@@ -1,7 +1,5 @@
 // app/dashboard/articles/new/page.tsx
-
 import NewArticleForm from "./NewArticleForm";
-
 export default async function NewArticlePage() {
  
 
