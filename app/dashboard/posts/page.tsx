@@ -1,5 +1,5 @@
 // app/dashboard/articles/page.tsx
-import { db } from "../../lib/prisma";
+import { api } from "@/app/lib/api";
 import Link from "next/link";
 
 
@@ -16,7 +16,7 @@ type Post = {
 
 export default async function ArticlesPage() {
 
-const posts: Post[] = await fetch("http://localhost:3000/api/posts").then(res => res.json());
+const posts: Post[] = await api.posts.getAll();
 
  
   return (

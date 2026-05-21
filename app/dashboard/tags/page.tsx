@@ -1,5 +1,5 @@
 // app/dashboard/tags/page.tsx
-
+import { api } from "@/app/lib/api";
 
 interface Tag {
   id: string;
@@ -11,9 +11,8 @@ interface Tag {
 }
 
 export default async function TagsPage() {
-const tags: Tag[] = await fetch("http://localhost:3000/api/tags").then(res => res.json());
+const tags: Tag[] = await api.tags.getAll();
 
-console.log("Tags récupérés :", tags); // Debug : vérifier les données reçues
   return (
     <div className="p-8 space-y-6">
       <div className="flex items-center justify-between">

@@ -4,8 +4,12 @@ import { db} from "../../lib/prisma";
 export async function GET() {
   try {
     const users = await db.user.findMany({
-      include: { posts: true, comments: true },
+      include: { posts: true, comments: true ,_count: {
+      select: { posts: true }, },
+  },
+
     });
+
     return NextResponse.json(users);
   } catch (error) {
     console.error("[GET /api/users]", error);
