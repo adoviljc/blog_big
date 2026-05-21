@@ -27,6 +27,9 @@ export default async function CategoriesPage() {
           </svg>
           Nouvelle catégorie
         </button>
+
+
+        
       </div>
 
       <div className="grid grid-cols-2 gap-4">
