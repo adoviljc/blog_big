@@ -6,7 +6,7 @@ export const api = {
   },
   users: {
     getAll:  () => fetch(`${BASE_URL}/api/users`).then(r => r.json()),
-    getById: (id: string) => fetch(`${BASE_URL}/api/users/${id}`).then(r => r.json()),
+    getById: (id: string) => fetch(`${BASE_URL}/api/users/${id}`, { cache: "no-store" }).then(r => r.json()),
     updateRole: (id: string, role: string) =>
       fetch(`${BASE_URL}/api/users/${id}/role`, {
         method: "PATCH",
@@ -16,5 +16,12 @@ export const api = {
   },
     posts: {
       getAll: () => fetch(`${BASE_URL}/api/posts`).then(r => r.json()),
+      getById: (id: string) => fetch(`${BASE_URL}/api/posts/${id}`).then(r => r.json()),
+    
+    },
+    categories :{
+        getAll:()=> fetch(`${BASE_URL}/api/categories `).then(r => r.json()),
+        
+        
     }
 };

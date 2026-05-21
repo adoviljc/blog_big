@@ -1,4 +1,4 @@
-// app/dashboard/categories/page.tsx
+import { api } from "@/app/lib/api";
 
 
 type Category = {
@@ -11,7 +11,7 @@ type Category = {
 };
 
 export default async function CategoriesPage() {
-  const categories: Category[] = await fetch("http://localhost:3000/api/categories").then(res => res.json());
+  const categories: Category[] = await api.categories.getAll();
 
   return (
     <div className="p-8 space-y-6">

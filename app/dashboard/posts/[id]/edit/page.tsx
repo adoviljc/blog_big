@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
+import { api } from "@/app/lib/api";
 
 export default function EditPostPage() {
   const router = useRouter();
@@ -28,12 +29,12 @@ export default function EditPostPage() {
     if (!id) return;
 
     Promise.all([
-      fetch(`/api/posts/${id}`).then((r) => {
+      api.posts.getAll().then((r) => {
         if (!r.ok) throw new Error("not found");
         return r.json();
       }),
-      fetch("/api/categories").then((r) => r.json()),
-      fetch("/api/tags").then((r) => r.json()),
+      api.categories.getAll().then((r) => r.json()),
+      api.tags.getAll().then((r) => r.json()),
     ])
       .then(([post, cats, tgs]) => {
         setCategories(cats);

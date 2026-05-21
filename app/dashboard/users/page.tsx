@@ -1,4 +1,4 @@
-// app/dashboard/users/page.tsx
+import { api } from "@/app/lib/api";
 
 interface User {
   id: string;
@@ -44,9 +44,7 @@ function UserAvatar({ name, email }: { name: string | null; email: string }) {
 }
 
 export default async function UsersPage() {
-  const users: User[] = await fetch("http://localhost:3000/api/users").then(
-    (res) => res.json()
-  );
+  const users: User[] = await api.users.getAll();
 
  
   return (

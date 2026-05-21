@@ -1,16 +1,17 @@
 import Link from "next/link";
 import CommentForm from "../../../components/CommentForm";
+import { api } from "@/app/lib/api";
 
 async function getPost(id: string) {
-  const res = await fetch(`http://localhost:3000/api/posts/${id}`, { cache: "no-store" });
+  const res = await api.posts.getById(id);
   if (!res.ok) return null;
-  return res.json();
+  return res
 }
 
 export default async function PostPage({ params }: { params: Promise<{ id: string }> }) {
   const post = await getPost((await params).id);
 
-  console.log("voici l'articles "+post)
+ 
   if (!post) return <p className="text-stone-500">Article introuvable.</p>;
 
   return (

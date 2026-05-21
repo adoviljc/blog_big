@@ -1,12 +1,13 @@
-// app/dashboard/articles/new/page.tsx
+// app/dashboard/articles/new
+import { api } from "@/app/lib/api";
+
 import NewArticleForm from "./NewArticleForm";
 export default async function NewArticlePage() {
  
 
-
-  const [categories, tags] = await Promise.all([
-    fetch("http://localhost:3000/api/categories").then((res) => res.json()),
-    fetch("http://localhost:3000/api/tags").then((res) => res.json()),
+const [categories, tags] = await Promise.all([
+    api.categories.getAll(),
+    api.tags.getAll(),
   ]);
 
   return <NewArticleForm categories={categories} tags={tags} />;
